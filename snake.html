@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <canvas id="c"></canvas>
+    <script>
+        snake=["9 8"]
+        dir=1
+        map=[]
+        r=[]
+        keys=[]
+        ri=(m)=>{
+            return Math.floor(Math.random()*m);
+        }
+        sf=()=>{food=(ri(18)+1)+" "+(ri(10)+1)}
+        sf()
+        for(j=0;j<20;j++){
+            r.push("999")
+        }
+        map.push(r)
+        for(i=0;i<10;i++){
+            o=["999"]
+            for(j=0;j<18;j++){
+
+                o.push("BBB")
+            }
+            o.push("999")
+            map.push(o)
+        }
+        map.push(r)
+        rectangle=(a,b,c,d,e)=>{
+            t=document.getElementById("c").getContext("2d")
+            t.fillStyle=e;
+            t.fillRect(a,b,c,d);
+        }
+
+        draw=()=>{
+            
+            for(i=0;i<20;i++){
+                for(j=0;j<12;j++){
+                    if (snake.includes(i+" "+j)) {
+                        rectangle(i*11,j*11,10,10,"#D44")
+                    } else if (food==i+" "+j){
+                        rectangle(i*11,j*11,10,10,"#4D4")
+                    }else {
+                        rectangle(i*11,j*11,10,10,"#"+map[j][i])
+                    }
+
+                }
+            }
+        }
+        draw()
+        document.onkeydown=(e)=>{
+            e=e.keyCode
+            if(e>36&&e<41)
+            keys.push((e-38)%4)
+
+        };
+        gameloop=()=>{
+            if (keys.length > 0&&keys[0]!=(dir+2)%4){
+                dir=keys[0]
+            }
+
+            l=snake.length-1
+            w=snake[l].split(" ")
+            x=w[0]/1
+            y=w[1]/1
+            console.log(dir)
+            if(dir==0){
+                y=y-1
+            } else if(dir==1){
+                x=x+1
+            } else if(dir==2){
+                y=y+1
+            } else {
+                x=x-1
+            }
+            n=x+" "+y
+            if(snake.includes(n)||map[y][x]=="999"){
+                clearInterval(z)
+                alert("Game over")
+            }
+            snake.push(n)
+            if (food==n) {
+                sf()
+            } else {snake.splice(0,1)}
+
+            keys=[]
+            //keys.splice(0)
+            console.log(n)
+            draw()
+        }
+        z=setInterval(gameloop,300)
+    </script>
+</body>
+</html>

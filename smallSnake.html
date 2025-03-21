@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><style>.a{width:calc(100% - 200px);height:calc(100% - 200px);position:absolute;top:0px;left:0px;background-color:#00000077;padding:100px;color:#fff;font-size:20px;font-family:sans-serif}#c{position:absolute;top:0px;left:0px}</style></head><body><canvas id="c"></canvas><div class="a"id="a"><h1>Snake</h1>Under 1.8kb<br>Scratching_claws<br><input type="checkbox"id="b">Max size map<br><input type="checkbox"id="d">Obstacles<br><br><button onclick="ha()">Start</button></div><script>
+z=0
+dg=(e)=>{return document.getElementById(e)}
+ha=()=>{dg("a").style.display="none";it();z=setInterval(v,300);q()}
+h=(m)=>{return Math.floor(Math.random()*m)}
+p=()=>{fa=[0,0];while(m[fa[1]][fa[0]]=="999"){f=(h(wi)+1)+" "+(h(hi)+1);fa=f.split(" ")}}
+f=""
+s=["9 8"]
+g=1
+m=[]
+r=[]
+k=[]
+wi=18
+hi=10
+wh=window.innerHeight
+ww=window.innerWidth
+dc=dg("c")
+it=()=>{if(dg("b").checked){dc.width=ww
+dc.height=wh
+wi=Math.floor(ww/11)-2
+hi=Math.floor(wh/11)-2}for(j=0;j<wi+2;j++){r.push("999")}m.push(r)
+for(i=0;i<hi;i++){o=["999"]
+for(j=0;j<wi;j++){if(dg("d").checked&&h(25)==1){o.push("999")}else{o.push("BBB")}}
+o.push("999")
+m.push(o)}
+m.push(r)
+p()}
+u=(a,b,c,d,e)=>{t=dc.getContext("2d")
+t.fillStyle=e
+t.fillRect(a,b,c,d)}
+q=()=>{for(i=0;i<wi+2;i++){for(j=0;j<hi+2;j++){if(s.includes(i+" "+j)){u(i*11,j*11,10,10,"#D44")}else if(f==i+" "+j){u(i*11,j*11,10,10,"#2D4")}else{u(i*11,j*11,10,10,"#"+m[j][i])}}}}
+document.onkeydown=(e)=>{e=e.keyCode
+if(e>36&&e<41){k.push((e-38)%4)}}
+v=()=>{if(k.length>0&&k[0]!=(g+2)%4){g=k[0]}
+l=s.length-1
+w=s[l].split(" ")
+x=w[0]/1
+y=w[1]/1
+if(g==0){y=y-1}else if(g==1){x=x+1}else if(g==2){y=y+1}else{x=x-1}
+n=x+" "+y
+if(s.includes(n)||m[y][x]=="999"){
+clearInterval(z)
+alert("Game over")}
+s.push(n)
+if(f==n){p()}else {s.splice(0,1)}
+k=[]
+q()}
+</script></body></html>
