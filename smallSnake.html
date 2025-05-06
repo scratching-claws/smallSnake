@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><style>.a{width:calc(100% - 200px);height:calc(100% - 200px);position:absolute;top:0px;left:0px;background-color:#00000077;padding:100px;color:#fff;font-size:20px;font-family:sans-serif}#c{position:absolute;top:0px;left:0px}</style></head><body><canvas id="c"></canvas><div class="a"id="a"><h1>Snake</h1>Under 1.8kb<br>Scratching_claws<br><input type="checkbox"id="b">Max size map<br><input type="checkbox"id="d">Obstacles<br><br><button onclick="ha()">Start</button></div><script>
+<!DOCTYPE html><html><head><style>.a{width:calc(100% - 200px);height:calc(100% - 200px);position:absolute;top:0px;left:0px;background-color:#00000077;padding:100px;color:#fff;font-size:20px;font-family:sans-serif}#c{position:absolute;top:0px;left:0px}</style></head><body><canvas id="c"></canvas><div class="a"id="a"><h1>Snake</h1>Under 1.8kb<br>Scratching_claws<br><input type="checkbox"id="b">Max size map<br><input type="checkbox"id="d">Obstacles<br><br><a onclick="ha()">Start</a></div><script>
 z=0
 dg=(e)=>{return document.getElementById(e)}
 ha=()=>{dg("a").style.display="none";it();z=setInterval(v,300);q()}
@@ -12,9 +12,9 @@ r=[]
 k=[]
 wi=18
 hi=10
-wh=window.innerHeight
-ww=window.innerWidth
 dc=dg("c")
+wh=dg("a").scrollHeight
+ww=dg("a").scrollWidth
 it=()=>{if(dg("b").checked){dc.width=ww
 dc.height=wh
 wi=Math.floor(ww/11)-2
@@ -28,7 +28,7 @@ p()}
 u=(a,b,c,d,e)=>{t=dc.getContext("2d")
 t.fillStyle=e
 t.fillRect(a,b,c,d)}
-q=()=>{for(i=0;i<wi+2;i++){for(j=0;j<hi+2;j++){if(s.includes(i+" "+j)){u(i*11,j*11,10,10,"#D44")}else if(f==i+" "+j){u(i*11,j*11,10,10,"#2D4")}else{u(i*11,j*11,10,10,"#"+m[j][i])}}}}
+q=()=>{for(i=0;i<wi+2;i++){for(j=0;j<hi+2;j++){if(s.includes(i+" "+j)){u(i*11,j*11,10,10,"#D44")}else if(f==i+" "+j){u(i*11,j*11,10,10,"#294")}else{u(i*11,j*11,10,10,"#"+m[j][i])}}}}
 document.onkeydown=(e)=>{e=e.keyCode
 if(e>36&&e<41){k.push((e-38)%4)}}
 v=()=>{if(k.length>0&&k[0]!=(g+2)%4){g=k[0]}
